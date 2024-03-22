@@ -1,4 +1,3 @@
-import java.text.DecimalFormat;
 public class Conta {
 	// Atributos
 	public String numeroAgencia;
