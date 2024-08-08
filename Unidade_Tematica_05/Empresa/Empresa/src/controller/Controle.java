@@ -22,13 +22,27 @@ public class Controle {
         funcionarios.put(cpf, new Gerente(nome, cpf, salario, setor));
     }
     
-    public String getRelatorioFuncionarios() {
+    public String getRelatorioTodosFuncionarios() {
         String relatorio = "";
         for (Funcionario f : funcionarios.values()) {
             relatorio += f.getRelatorio() + "\n================";
         }
         return relatorio;
     }
+    
+    public String getRelatorioFuncionario(String cpf) {
+        return this.funcionarios.get(cpf).getRelatorio();
+}
+    
+    public String[] getCpfFuncionarios() {
+        String[] cpfs = new String[this.funcionarios.size() + 1];
+        cpfs[0] = "Todos";
+        int i = 1;
+        for (String s : this.funcionarios.keySet()) {
+            cpfs[i++] = s + " - " + this.funcionarios.get(s).getNome();
+        }
+        return cpfs;
+}
     
     public String vender(String cpf, double valorProduto){
         if(this.funcionarios.get(cpf) instanceof Vendedor){

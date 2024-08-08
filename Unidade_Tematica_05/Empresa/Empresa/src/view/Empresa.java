@@ -23,7 +23,7 @@ public class Empresa {
         controle.vender("33333333333", 20000);
         JOptionPane.showMessageDialog(null, str);
         
-        System.out.println(controle.getRelatorioFuncionarios());
+        System.out.println(controle.getRelatorioTodosFuncionarios());
     }
     
 }

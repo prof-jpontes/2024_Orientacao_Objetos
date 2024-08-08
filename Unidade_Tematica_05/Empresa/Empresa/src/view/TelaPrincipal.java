@@ -6,10 +6,6 @@ package view;
 
 import controller.Controle;
 
-/**
- *
- * @author Aluno
- */
 public class TelaPrincipal extends javax.swing.JFrame {
 
     Controle controle = new Controle();
@@ -17,6 +13,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     public TelaPrincipal() {
         initComponents();
         setLocationRelativeTo(null);
+        this.JP_relatorioFuncionario.setVisible(false);
     }
 
     /**
@@ -28,8 +25,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        JP_relatorioFuncionario = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         JTA_relatorioFuncionarios = new javax.swing.JTextArea();
+        JL_funcionarios = new javax.swing.JLabel();
+        JCB_funcionarios = new javax.swing.JComboBox<>();
         jMenuBar1 = new javax.swing.JMenuBar();
         JM_opcoes = new javax.swing.JMenu();
         JMI_sair = new javax.swing.JMenuItem();
@@ -39,9 +39,50 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        JTA_relatorioFuncionarios.setEditable(false);
         JTA_relatorioFuncionarios.setColumns(20);
         JTA_relatorioFuncionarios.setRows(5);
         jScrollPane1.setViewportView(JTA_relatorioFuncionarios);
+
+        JL_funcionarios.setText("Funcionário: ");
+
+        JCB_funcionarios.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Todos" }));
+        JCB_funcionarios.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JCB_funcionariosActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout JP_relatorioFuncionarioLayout = new javax.swing.GroupLayout(JP_relatorioFuncionario);
+        JP_relatorioFuncionario.setLayout(JP_relatorioFuncionarioLayout);
+        JP_relatorioFuncionarioLayout.setHorizontalGroup(
+            JP_relatorioFuncionarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(JP_relatorioFuncionarioLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(JL_funcionarios)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(JCB_funcionarios, 0, 307, Short.MAX_VALUE)
+                .addContainerGap())
+            .addGroup(JP_relatorioFuncionarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(JP_relatorioFuncionarioLayout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
+                    .addContainerGap()))
+        );
+        JP_relatorioFuncionarioLayout.setVerticalGroup(
+            JP_relatorioFuncionarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(JP_relatorioFuncionarioLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(JP_relatorioFuncionarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(JL_funcionarios)
+                    .addComponent(JCB_funcionarios, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(335, Short.MAX_VALUE))
+            .addGroup(JP_relatorioFuncionarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(JP_relatorioFuncionarioLayout.createSequentialGroup()
+                    .addGap(37, 37, 37)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 314, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(12, Short.MAX_VALUE)))
+        );
 
         JM_opcoes.setText("Opções");
 
@@ -56,6 +97,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jMenuBar1.add(JM_opcoes);
 
         JM_funcionario.setText("Funcionário");
+        JM_funcionario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JM_funcionarioActionPerformed(evt);
+            }
+        });
 
         JMI_cadastrar.setText("Cadastrar");
         JMI_cadastrar.addActionListener(new java.awt.event.ActionListener() {
@@ -81,11 +127,13 @@ public class TelaPrincipal extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
+            .addComponent(JP_relatorioFuncionario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 278, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(JP_relatorioFuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 6, Short.MAX_VALUE))
         );
 
         pack();
@@ -96,12 +144,29 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_JMI_sairActionPerformed
 
     private void JMI_emitirRelatorioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JMI_emitirRelatorioActionPerformed
-        this.JTA_relatorioFuncionarios.setText(controle.getRelatorioFuncionarios());
+        this.JTA_relatorioFuncionarios.setText(controle.getRelatorioTodosFuncionarios());
+        this.JP_relatorioFuncionario.setVisible(true);
+        JCB_funcionarios.setModel(new javax.swing.DefaultComboBoxModel<>(controle.getCpfFuncionarios()));
     }//GEN-LAST:event_JMI_emitirRelatorioActionPerformed
 
     private void JMI_cadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JMI_cadastrarActionPerformed
         new CadastrarFuncionario(this.controle).setVisible(true);
     }//GEN-LAST:event_JMI_cadastrarActionPerformed
+
+    private void JM_funcionarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JM_funcionarioActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_JM_funcionarioActionPerformed
+
+    private void JCB_funcionariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JCB_funcionariosActionPerformed
+       if (JCB_funcionarios.getSelectedIndex() > 0) {
+            String cpfSelecionado = JCB_funcionarios.getSelectedItem().toString();
+            cpfSelecionado = cpfSelecionado.split(" - ")[0];
+            String relatorio = controle.getRelatorioFuncionario(cpfSelecionado);
+            JTA_relatorioFuncionarios.setText(relatorio);
+       } else {
+            JTA_relatorioFuncionarios.setText(controle.getRelatorioTodosFuncionarios());
+       }
+    }//GEN-LAST:event_JCB_funcionariosActionPerformed
 
     /**
      * @param args the command line arguments
@@ -139,11 +204,14 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<String> JCB_funcionarios;
+    private javax.swing.JLabel JL_funcionarios;
     private javax.swing.JMenuItem JMI_cadastrar;
     private javax.swing.JMenuItem JMI_emitirRelatorio;
     private javax.swing.JMenuItem JMI_sair;
     private javax.swing.JMenu JM_funcionario;
     private javax.swing.JMenu JM_opcoes;
+    private javax.swing.JPanel JP_relatorioFuncionario;
     private javax.swing.JTextArea JTA_relatorioFuncionarios;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JScrollPane jScrollPane1;

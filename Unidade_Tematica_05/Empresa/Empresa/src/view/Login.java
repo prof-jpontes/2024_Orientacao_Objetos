@@ -6,6 +6,7 @@ public class Login extends javax.swing.JFrame {
 
     public Login() {
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     @SuppressWarnings("unchecked")
@@ -143,6 +144,8 @@ public class Login extends javax.swing.JFrame {
         if (JTF_login.getText().equals("admin")
                 && "admin".equals(new String(JPF_senha.getPassword())) ) {
             JOptionPane.showMessageDialog(null, "Login efetivado!");
+            new TelaPrincipal().setVisible(true);
+            this.dispose();
         } else {
             JOptionPane.showMessageDialog(null, "Login ou senha incorreto");
         }

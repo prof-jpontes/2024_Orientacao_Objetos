@@ -18,6 +18,10 @@ public class Funcionario {
                 "\nRendimento Mensal: " + this.getRendimentoMensal();
         return relatorio;
     }
+
+    public String getNome() {
+        return nome;
+    }
     
     public double getRendimentoMensal() {
         return this.salario;
