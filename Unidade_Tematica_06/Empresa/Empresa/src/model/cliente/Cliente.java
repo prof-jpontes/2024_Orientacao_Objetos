@@ -12,7 +12,12 @@ public abstract class Cliente {
     }
     
     public abstract String getRelatorio();
+
+    public void setEndereco(String endereco) {
+        this.endereco = endereco;
+    }
         
+   
 
 }
 
