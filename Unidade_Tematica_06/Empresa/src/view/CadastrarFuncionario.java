@@ -4,7 +4,7 @@
  */
 package view;
 
-import controller.Controle;
+import controller.ControleFuncionario;
 import java.text.NumberFormat;
 import java.text.ParseException;
 import java.util.Locale;
@@ -18,11 +18,11 @@ import javax.swing.JOptionPane;
  */
 public class CadastrarFuncionario extends javax.swing.JFrame {
 
-    Controle controle;
+    ControleFuncionario controleFuncionario;
     
-    public CadastrarFuncionario(Controle c) {
+    public CadastrarFuncionario(ControleFuncionario c) {
         initComponents();
-        this.controle = c;
+        this.controleFuncionario = c;
         JP_setorGerente.setVisible(false);
         JP_nivel.setVisible(false);
     }
@@ -331,12 +331,12 @@ public class CadastrarFuncionario extends javax.swing.JFrame {
         try {
             Number salario = formatador.parse(aux);
             if (JCB_cargo.getSelectedIndex() == 0) {
-                controle.cadastrarFuncionario(nome, cpf, salario.doubleValue());
+                controleFuncionario.cadastrarFuncionario(nome, cpf, salario.doubleValue());
             } else if(JCB_cargo.getSelectedIndex() == 2) {
-                controle.cadastrarGerente(nome, cpf, salario.doubleValue(), JCB_setorBox.getSelectedItem().toString());
+                controleFuncionario.cadastrarGerente(nome, cpf, salario.doubleValue(), JCB_setorBox.getSelectedItem().toString());
             } else {
                 String nivel = JRB_jr.isSelected() ? "Junior" : JRB_pleno.isSelected() ? "Pleno" : "Senior";
-                controle.cadastrarVendedor(nome, cpf, salario.doubleValue(), nivel);
+                controleFuncionario.cadastrarVendedor(nome, cpf, salario.doubleValue(), nivel);
             }
 
                 JOptionPane.showMessageDialog(rootPane, "Funcionário cadastrado com sucesso!", "Cadastro de Funcionário", WIDTH);

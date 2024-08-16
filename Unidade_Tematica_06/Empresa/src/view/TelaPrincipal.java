@@ -4,11 +4,11 @@
  */
 package view;
 
-import controller.Controle;
+import controller.ControleFuncionario;
 
 public class TelaPrincipal extends javax.swing.JFrame {
 
-    Controle controle = new Controle();
+    ControleFuncionario controleFuncionario = new ControleFuncionario();
     
     public TelaPrincipal() {
         initComponents();
@@ -144,13 +144,13 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_JMI_sairActionPerformed
 
     private void JMI_emitirRelatorioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JMI_emitirRelatorioActionPerformed
-        this.JTA_relatorioFuncionarios.setText(controle.getRelatorioTodosFuncionarios());
+        this.JTA_relatorioFuncionarios.setText(controleFuncionario.getRelatorioTodosFuncionarios());
         this.JP_relatorioFuncionario.setVisible(true);
-        JCB_funcionarios.setModel(new javax.swing.DefaultComboBoxModel<>(controle.getCpfFuncionarios()));
+        JCB_funcionarios.setModel(new javax.swing.DefaultComboBoxModel<>(controleFuncionario.getCpfFuncionarios()));
     }//GEN-LAST:event_JMI_emitirRelatorioActionPerformed
 
     private void JMI_cadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JMI_cadastrarActionPerformed
-        new CadastrarFuncionario(this.controle).setVisible(true);
+        new CadastrarFuncionario(this.controleFuncionario).setVisible(true);
     }//GEN-LAST:event_JMI_cadastrarActionPerformed
 
     private void JM_funcionarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JM_funcionarioActionPerformed
@@ -161,10 +161,10 @@ public class TelaPrincipal extends javax.swing.JFrame {
        if (JCB_funcionarios.getSelectedIndex() > 0) {
             String cpfSelecionado = JCB_funcionarios.getSelectedItem().toString();
             cpfSelecionado = cpfSelecionado.split(" - ")[0];
-            String relatorio = controle.getRelatorioFuncionario(cpfSelecionado);
+            String relatorio = controleFuncionario.getRelatorioFuncionario(cpfSelecionado);
             JTA_relatorioFuncionarios.setText(relatorio);
        } else {
-            JTA_relatorioFuncionarios.setText(controle.getRelatorioTodosFuncionarios());
+            JTA_relatorioFuncionarios.setText(controleFuncionario.getRelatorioTodosFuncionarios());
        }
     }//GEN-LAST:event_JCB_funcionariosActionPerformed
 
