@@ -4,18 +4,20 @@
  */
 package view;
 
+import controller.ControleCliente;
+
 /**
  *
  * @author Aluno
  */
 public class CadastroCliente extends javax.swing.JDialog {
 
-    /**
-     * Creates new form CadastroCliente
-     */
-    public CadastroCliente(java.awt.Frame parent, boolean modal) {
+   private ControleCliente controleCliente;
+    
+    public CadastroCliente(java.awt.Frame parent, boolean modal, ControleCliente controleCliente) {
         super(parent, modal);
         initComponents();
+        this.controleCliente = controleCliente;
     }
 
     /**
@@ -27,17 +29,169 @@ public class CadastroCliente extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        JBG_tipoCliente = new javax.swing.ButtonGroup();
+        JP_novoCliente = new javax.swing.JPanel();
+        JL_tipo = new javax.swing.JLabel();
+        JRB_pessoaFisica = new javax.swing.JRadioButton();
+        JRB_pessoaJuridica = new javax.swing.JRadioButton();
+        JL_nome = new javax.swing.JLabel();
+        JL_doc = new javax.swing.JLabel();
+        JL_telefone = new javax.swing.JLabel();
+        JL_endereco = new javax.swing.JLabel();
+        JTF_nome = new javax.swing.JTextField();
+        JFTF_documento = new javax.swing.JFormattedTextField();
+        JFTF_telefone = new javax.swing.JFormattedTextField();
+        JTF_endereco = new javax.swing.JTextField();
+        jPanel1 = new javax.swing.JPanel();
+        JB_cadastrar = new javax.swing.JButton();
+        JB_cancelar = new javax.swing.JButton();
+        JB_limpar = new javax.swing.JButton();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+
+        JP_novoCliente.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Novo Cliente", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.TOP), javax.swing.BorderFactory.createEtchedBorder()));
+
+        JL_tipo.setText("Tipo:");
+
+        JBG_tipoCliente.add(JRB_pessoaFisica);
+        JRB_pessoaFisica.setSelected(true);
+        JRB_pessoaFisica.setText("Pessoa Física");
+
+        JBG_tipoCliente.add(JRB_pessoaJuridica);
+        JRB_pessoaJuridica.setText("Pessoa Jurídica");
+
+        JL_nome.setText("Nome:");
+
+        JL_doc.setText("CPF:");
+
+        JL_telefone.setText("Telefone:");
+
+        JL_endereco.setText("Endereço:");
+
+        try {
+            JFTF_documento.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+
+        try {
+            JFTF_telefone.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(##) 9####-####")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+
+        javax.swing.GroupLayout JP_novoClienteLayout = new javax.swing.GroupLayout(JP_novoCliente);
+        JP_novoCliente.setLayout(JP_novoClienteLayout);
+        JP_novoClienteLayout.setHorizontalGroup(
+            JP_novoClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(JP_novoClienteLayout.createSequentialGroup()
+                .addGap(21, 21, 21)
+                .addGroup(JP_novoClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(JP_novoClienteLayout.createSequentialGroup()
+                        .addGroup(JP_novoClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(JL_tipo)
+                            .addComponent(JL_nome))
+                        .addGroup(JP_novoClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(JP_novoClienteLayout.createSequentialGroup()
+                                .addGap(18, 18, 18)
+                                .addComponent(JRB_pessoaFisica)
+                                .addGap(18, 18, 18)
+                                .addComponent(JRB_pessoaJuridica)
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, JP_novoClienteLayout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(JP_novoClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(JFTF_documento, javax.swing.GroupLayout.DEFAULT_SIZE, 259, Short.MAX_VALUE)
+                                    .addComponent(JTF_nome))
+                                .addContainerGap())))
+                    .addGroup(JP_novoClienteLayout.createSequentialGroup()
+                        .addGroup(JP_novoClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(JL_doc)
+                            .addGroup(JP_novoClienteLayout.createSequentialGroup()
+                                .addGroup(JP_novoClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(JL_telefone)
+                                    .addComponent(JL_endereco))
+                                .addGap(48, 48, 48)
+                                .addGroup(JP_novoClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(JFTF_telefone, javax.swing.GroupLayout.DEFAULT_SIZE, 259, Short.MAX_VALUE)
+                                    .addComponent(JTF_endereco))))
+                        .addContainerGap())))
+        );
+        JP_novoClienteLayout.setVerticalGroup(
+            JP_novoClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(JP_novoClienteLayout.createSequentialGroup()
+                .addGap(14, 14, 14)
+                .addGroup(JP_novoClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(JL_tipo)
+                    .addComponent(JRB_pessoaFisica)
+                    .addComponent(JRB_pessoaJuridica))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(JP_novoClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(JL_nome)
+                    .addComponent(JTF_nome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(JP_novoClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(JL_doc)
+                    .addComponent(JFTF_documento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(JP_novoClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(JL_telefone)
+                    .addComponent(JFTF_telefone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(JP_novoClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(JL_endereco)
+                    .addComponent(JTF_endereco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(18, Short.MAX_VALUE))
+        );
+
+        JB_cadastrar.setText("Cadastrar");
+
+        JB_cancelar.setText("Cancelar");
+
+        JB_limpar.setText("Limpar");
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addComponent(JB_cadastrar)
+                .addGap(27, 27, 27)
+                .addComponent(JB_limpar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
+                .addComponent(JB_cancelar)
+                .addGap(26, 26, 26))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(19, 19, 19)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                    .addComponent(JB_cancelar)
+                    .addComponent(JB_limpar)
+                    .addComponent(JB_cadastrar))
+                .addContainerGap(24, Short.MAX_VALUE))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addComponent(JP_novoCliente, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(36, 36, 36))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(24, 24, 24)
+                .addComponent(JP_novoCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(41, Short.MAX_VALUE))
         );
 
         pack();
@@ -73,7 +227,7 @@ public class CadastroCliente extends javax.swing.JDialog {
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                CadastroCliente dialog = new CadastroCliente(new javax.swing.JFrame(), true);
+                CadastroCliente dialog = new CadastroCliente(new javax.swing.JFrame(), true, null);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
@@ -86,5 +240,22 @@ public class CadastroCliente extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.ButtonGroup JBG_tipoCliente;
+    private javax.swing.JButton JB_cadastrar;
+    private javax.swing.JButton JB_cancelar;
+    private javax.swing.JButton JB_limpar;
+    private javax.swing.JFormattedTextField JFTF_documento;
+    private javax.swing.JFormattedTextField JFTF_telefone;
+    private javax.swing.JLabel JL_doc;
+    private javax.swing.JLabel JL_endereco;
+    private javax.swing.JLabel JL_nome;
+    private javax.swing.JLabel JL_telefone;
+    private javax.swing.JLabel JL_tipo;
+    private javax.swing.JPanel JP_novoCliente;
+    private javax.swing.JRadioButton JRB_pessoaFisica;
+    private javax.swing.JRadioButton JRB_pessoaJuridica;
+    private javax.swing.JTextField JTF_endereco;
+    private javax.swing.JTextField JTF_nome;
+    private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }

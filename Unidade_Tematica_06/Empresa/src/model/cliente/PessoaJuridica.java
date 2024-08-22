@@ -13,7 +13,7 @@ public class PessoaJuridica extends Cliente {
     public String getRelatorio() {
         String relatorio = "DADOS DA EMPRESA\n" +
                 "CNPJ: " + this.cnpj + "\n" +
-                "RAZÃO SOCIAL: " + this.nome + "\n";
+                "RAZÃO SOCIAL: " + this.nome + "\n" + super.getEndereco() + "\n";
         return relatorio;
     }
     

@@ -4,11 +4,13 @@
  */
 package view;
 
+import controller.ControleCliente;
 import controller.ControleFuncionario;
 
 public class TelaPrincipal extends javax.swing.JFrame {
 
     ControleFuncionario controleFuncionario = new ControleFuncionario();
+    ControleCliente controleCliente = new ControleCliente();
     
     public TelaPrincipal() {
         initComponents();
@@ -36,6 +38,9 @@ public class TelaPrincipal extends javax.swing.JFrame {
         JM_funcionario = new javax.swing.JMenu();
         JMI_cadastrar = new javax.swing.JMenuItem();
         JMI_emitirRelatorio = new javax.swing.JMenuItem();
+        JM_cliente = new javax.swing.JMenu();
+        JMI_cadastrarCliente = new javax.swing.JMenuItem();
+        JMI_emitirRelatorioCliente = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -121,6 +126,26 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         jMenuBar1.add(JM_funcionario);
 
+        JM_cliente.setText("Cliente");
+        JM_cliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JM_clienteActionPerformed(evt);
+            }
+        });
+
+        JMI_cadastrarCliente.setText("Cadastrar");
+        JMI_cadastrarCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JMI_cadastrarClienteActionPerformed(evt);
+            }
+        });
+        JM_cliente.add(JMI_cadastrarCliente);
+
+        JMI_emitirRelatorioCliente.setText("Emitir Relatório");
+        JM_cliente.add(JMI_emitirRelatorioCliente);
+
+        jMenuBar1.add(JM_cliente);
+
         setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -168,6 +193,14 @@ public class TelaPrincipal extends javax.swing.JFrame {
        }
     }//GEN-LAST:event_JCB_funcionariosActionPerformed
 
+    private void JM_clienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JM_clienteActionPerformed
+        
+    }//GEN-LAST:event_JM_clienteActionPerformed
+
+    private void JMI_cadastrarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JMI_cadastrarClienteActionPerformed
+       new CadastroCliente(this, rootPaneCheckingEnabled, controleCliente).setVisible(true);
+    }//GEN-LAST:event_JMI_cadastrarClienteActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -207,8 +240,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> JCB_funcionarios;
     private javax.swing.JLabel JL_funcionarios;
     private javax.swing.JMenuItem JMI_cadastrar;
+    private javax.swing.JMenuItem JMI_cadastrarCliente;
     private javax.swing.JMenuItem JMI_emitirRelatorio;
+    private javax.swing.JMenuItem JMI_emitirRelatorioCliente;
     private javax.swing.JMenuItem JMI_sair;
+    private javax.swing.JMenu JM_cliente;
     private javax.swing.JMenu JM_funcionario;
     private javax.swing.JMenu JM_opcoes;
     private javax.swing.JPanel JP_relatorioFuncionario;

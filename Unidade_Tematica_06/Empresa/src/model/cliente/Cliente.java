@@ -16,6 +16,13 @@ public abstract class Cliente {
     public void setEndereco(String endereco) {
         this.endereco = endereco;
     }
+
+    public String getEndereco() {
+        if(this.endereco != null){
+            return "Endereço: " +  this.endereco ;
+        }
+        return "";
+    }
     
 }
 

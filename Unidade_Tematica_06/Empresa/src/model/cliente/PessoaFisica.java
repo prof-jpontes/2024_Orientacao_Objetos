@@ -22,7 +22,9 @@ public class PessoaFisica extends Cliente {
     public String getRelatorio() {
         String relatorio = "DADOS DA PESSOA FÍSICA\n" +
                 "Nome: " + this.nome + "\n" +
-                "CPF: " + this.cpf + "\n";
+                "CPF: " + this.cpf + "\n" + super.getEndereco();
+        
+                  
         return relatorio;
     }
     
