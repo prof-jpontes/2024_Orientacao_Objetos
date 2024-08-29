@@ -5,6 +5,7 @@
 package view;
 
 import controller.ControleCliente;
+import java.util.ArrayList;
 
 /**
  *
@@ -21,6 +22,7 @@ public class RelatorioCliente extends javax.swing.JDialog {
         initComponents();
         this.controleCliente = controleCliente;
         this.mudarVisibilidadeItensPesquisa(false);
+        this.JCB_listaClientes.setVisible(false);
         
     }
 
@@ -44,6 +46,7 @@ public class RelatorioCliente extends javax.swing.JDialog {
         JL_pesquisa = new javax.swing.JLabel();
         JTF_pesquisa = new javax.swing.JTextField();
         JB_pesquisar = new javax.swing.JButton();
+        JCB_listaClientes = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -96,6 +99,13 @@ public class RelatorioCliente extends javax.swing.JDialog {
             }
         });
 
+        JCB_listaClientes.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        JCB_listaClientes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JCB_listaClientesActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout JP_opcoesRelatorioLayout = new javax.swing.GroupLayout(JP_opcoesRelatorio);
         JP_opcoesRelatorio.setLayout(JP_opcoesRelatorioLayout);
         JP_opcoesRelatorioLayout.setHorizontalGroup(
@@ -108,14 +118,19 @@ public class RelatorioCliente extends javax.swing.JDialog {
                 .addGap(18, 18, 18)
                 .addGroup(JP_opcoesRelatorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(JP_opcoesRelatorioLayout.createSequentialGroup()
-                        .addComponent(JRB_todosClientes)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(JRB_umCliente))
+                        .addGroup(JP_opcoesRelatorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(JP_opcoesRelatorioLayout.createSequentialGroup()
+                                .addComponent(JRB_todosClientes)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(JRB_umCliente))
+                            .addGroup(JP_opcoesRelatorioLayout.createSequentialGroup()
+                                .addComponent(JTF_pesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
+                                .addComponent(JB_pesquisar)))
+                        .addGap(38, 38, 38))
                     .addGroup(JP_opcoesRelatorioLayout.createSequentialGroup()
-                        .addComponent(JTF_pesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
-                        .addComponent(JB_pesquisar)))
-                .addGap(38, 38, 38))
+                        .addComponent(JCB_listaClientes, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         JP_opcoesRelatorioLayout.setVerticalGroup(
             JP_opcoesRelatorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -130,7 +145,8 @@ public class RelatorioCliente extends javax.swing.JDialog {
                     .addComponent(JL_pesquisa)
                     .addComponent(JTF_pesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(JB_pesquisar))
-                .addContainerGap(31, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
+                .addComponent(JCB_listaClientes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -165,13 +181,37 @@ public class RelatorioCliente extends javax.swing.JDialog {
 
     private void JRB_umClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JRB_umClienteActionPerformed
         // TODO add your handling code here:
+        this.JTA_relatorio.setText(null);
         this.mudarVisibilidadeItensPesquisa(true);
     }//GEN-LAST:event_JRB_umClienteActionPerformed
 
     private void JB_pesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JB_pesquisarActionPerformed
         // TODO add your handling code here:
-        this.JTA_relatorio.setText(controleCliente.getRelatorioUmCliente(this.JTF_pesquisa.getText()));
+        String chave = this.JTF_pesquisa.getText();
+        if(controleCliente.ehCliente(chave)){
+            this.JTA_relatorio.setText(controleCliente.getRelatorioUmCliente(this.JTF_pesquisa.getText()));
+        }else{
+            ArrayList<String> listaClientes = controleCliente.getClientes(chave);
+            if(listaClientes.size() > 0){
+                JCB_listaClientes.setVisible(true);
+                String[] ar = listaClientes.toArray(new String[0]);
+                JCB_listaClientes.setModel(new javax.swing.DefaultComboBoxModel<>(ar));
+                JCB_listaClientes.setSelectedIndex(-1);
+            }else{
+                JTA_relatorio.setText("Cliente não localizado");
+                JCB_listaClientes.setVisible(false);
+            }
+        }
+        this.JTF_pesquisa.setText(null);
+        
+        
     }//GEN-LAST:event_JB_pesquisarActionPerformed
+
+    private void JCB_listaClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JCB_listaClientesActionPerformed
+        // TODO add your handling code here:
+        String chave = JCB_listaClientes.getSelectedItem().toString().split(" - ")[0];
+        this.JTA_relatorio.setText(controleCliente.getRelatorioUmCliente(chave));
+    }//GEN-LAST:event_JCB_listaClientesActionPerformed
 
     /**
      * @param args the command line arguments
@@ -223,6 +263,7 @@ public class RelatorioCliente extends javax.swing.JDialog {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton JB_pesquisar;
+    private javax.swing.JComboBox<String> JCB_listaClientes;
     private javax.swing.JLabel JL_pesquisa;
     private javax.swing.JLabel JL_tipoRelatorio;
     private javax.swing.JPanel JP_opcoesRelatorio;

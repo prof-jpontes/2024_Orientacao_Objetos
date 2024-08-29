@@ -27,5 +27,4 @@ public class PessoaFisica extends Cliente {
                   
         return relatorio;
     }
-    
 }

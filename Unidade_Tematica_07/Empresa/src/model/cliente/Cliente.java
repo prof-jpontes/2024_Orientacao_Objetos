@@ -23,7 +23,10 @@ public abstract class Cliente {
         }
         return "";
     }
+
+    public String getNome() {
+        return nome;
+    }
     
 }
-
 

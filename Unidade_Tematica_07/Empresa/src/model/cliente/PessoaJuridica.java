@@ -16,5 +16,5 @@ public class PessoaJuridica extends Cliente {
                 "RAZÃO SOCIAL: " + this.nome + "\n" + super.getEndereco() + "\n";
         return relatorio;
     }
-    
+
 }
