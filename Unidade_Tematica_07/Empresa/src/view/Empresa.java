@@ -3,6 +3,7 @@ package view;
 import controller.ControleFuncionario;
 import controller.ControleCliente;
 import javax.swing.JOptionPane;
+import model.Autenticavel;
 import model.cliente.Cliente;
 import model.cliente.PessoaFisica;
 import model.cliente.PessoaJuridica;
@@ -15,7 +16,7 @@ public class Empresa {
     public static void main(String[] args) {
         ControleFuncionario controle = new ControleFuncionario();
         
-        /*controle.cadastrarFuncionario("Jonas", "11111111111", 1000);
+         /*controle.cadastrarFuncionario("Jonas", "11111111111", 1000);     
         controle.cadastrarFuncionario("Joselito", "22222222222", 1000);
         controle.cadastrarVendedor("Fausto", "33333333333", 1000, "Junior");
         controle.cadastrarGerente("Bruno", "44444444444", 1000, "Comercial");
@@ -31,10 +32,15 @@ public class Empresa {
         
         ControleCliente controleCliente = new ControleCliente();
         
-        controleCliente.cadastrarCliente("Gilmar", "11111111111", "68999547852", "pf");
+        
+        
+         /*controleCliente.cadastrarCliente("Gilmar", "11111111111", "68999547852", "pf");
         controleCliente.cadastrarCliente("Joao", "22222222222", "6899965412", "Rua do Jambo, 50","pf");
         controleCliente.cadastrarCliente("José Eventos", "3333333333", "6832234567", "Rua da Carambola, 10","pj");
-        System.out.println(controleCliente.getRelatorioTodosClientes());
+        System.out.println(controleCliente.getRelatorioTodosClientes());*/
+         
+        Autenticavel g = new Gerente("João", "1", 0, "Setor");
+        g.autenticar("123");
                 
     }
     

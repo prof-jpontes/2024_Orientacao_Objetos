@@ -1,8 +1,11 @@
 package model.funcionario;
 
-public class Vendedor extends Funcionario {
+import model.Autenticavel;
+
+public class Vendedor extends Funcionario implements Autenticavel{
     private double comissaoMensal;
     private String nivel;
+    private String senha;
             
     public Vendedor(String nome, String cpf, double salario, String nivel) {
         super(nome, cpf, salario);
@@ -22,5 +25,10 @@ public class Vendedor extends Funcionario {
     
     public void registrarVenda(double valorVenda){
         this.comissaoMensal += valorVenda*0.10;
+    }
+
+    @Override
+    public boolean autenticar(String senha) {
+        return this.senha.equals(senha);
     }
 }

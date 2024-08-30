@@ -189,7 +189,7 @@ public class RelatorioCliente extends javax.swing.JDialog {
         // TODO add your handling code here:
         String chave = this.JTF_pesquisa.getText();
         if(controleCliente.ehCliente(chave)){
-            this.JTA_relatorio.setText(controleCliente.getRelatorioUmCliente(this.JTF_pesquisa.getText()));
+            this.JTA_relatorio.setText(controleCliente.getRelatorioUmCliente(chave));
         }else{
             ArrayList<String> listaClientes = controleCliente.getClientes(chave);
             if(listaClientes.size() > 0){
@@ -198,7 +198,7 @@ public class RelatorioCliente extends javax.swing.JDialog {
                 JCB_listaClientes.setModel(new javax.swing.DefaultComboBoxModel<>(ar));
                 JCB_listaClientes.setSelectedIndex(-1);
             }else{
-                JTA_relatorio.setText("Cliente não localizado");
+                JTA_relatorio.setText("Cliente não localizado!");
                 JCB_listaClientes.setVisible(false);
             }
         }
